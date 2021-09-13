@@ -1,0 +1,361 @@
+{
+  "openapi": "3.0.0",
+  "info": {
+    "title": "Pharma Inc API",
+    "description": "This is a api for Pharma Inc App.",
+    "version": "1.0.0",
+    "contact": {
+      "name": "Edilson da Silva",
+      "email": "edilson.silva00@hotmail.com"
+    }
+  },
+  "tags": [
+    { "name": "Users", "description": "Users of the App." }
+  ],
+  "servers": [
+    {
+      "url": "http://localhost:3000/",
+      "description": "Development server"
+    }
+  ],
+  "paths": {
+    "/users": {
+      "get": {
+        "tags": ["Users"],
+        "summary": "This route returns a list of users.",
+        "description": "This route returns a list of all users, containing all user information.",
+        "parameters": [
+          {
+            "in": "query",
+            "name": "q",
+            "required": false,
+            "schema": {
+              "type": "string"
+            },
+            "description": "Route used to paginate the users"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "A JSON array of users"
+          }
+        }
+      }
+    },
+    "/users/{userId}": {
+      "get": {
+        "tags": ["Users"],
+        "summary": "This route is to get a specific user.",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "userId",
+            "schema": {
+              "type": "string"
+            },
+            "required": true,
+            "description": "ID of the specific user to delete"
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "cell": {
+                      "type": "string"
+                    },
+                    "email": {
+                      "type": "string"
+                    },
+                    "gender": {
+                      "type": "string"
+                    },
+                    "nat": {
+                      "type": "string"
+                    },
+                    "phone": {
+                      "type": "string"
+                    },
+                    "name": {
+                      "type": "object",
+                      "properties": {
+                        "title": {
+                          "type": "string"
+                        },
+                        "first": {
+                          "type": "string"
+                        },
+                        "last": {
+                          "type": "string"
+                        }
+                      }
+                    },
+                    "dob": {
+                      "type": "object",
+                      "properties": {
+                        "date": {
+                          "type": "string"
+                        },
+                        "age": {
+                          "type": "number"
+                        }
+                      }
+                    },
+                    "picture": {
+                      "type": "object",
+                      "properties": {
+                        "large": {
+                          "type": "string"
+                        },
+                        "medium": {
+                          "type": "string"
+                        },
+                        "thumbnail": {
+                          "type": "string"
+                        }
+                      }
+                    },
+                    "login": {
+                      "type": "object",
+                      "properties": {
+                        "username": {
+                          "type": "string"
+                        },
+                        "password": {
+                          "type": "string"
+                        }
+                      }
+                    },
+                    "location": {
+                      "type": "object",
+                      "properties": {
+                        "street": {
+                          "type": "object",
+                          "properties": {
+                            "number": {
+                              "type": "number"
+                            },
+                            "name": {
+                              "type": "string"
+                            }
+                          }
+                        },
+                        "city": {
+                          "type": "string"
+                        },
+                        "state": {
+                          "type": "string"
+                        },
+                        "postcode": {
+                          "type": "string"
+                        },
+                        "coordinates": {
+                          "type": "object",
+                          "properties": {
+                            "latitude": {
+                              "type": "string"
+                            },
+                            "longitude": {
+                              "type": "string"
+                            }
+                          }
+                        },
+                        "timezone": {
+                          "type": "object",
+                          "properties": {
+                            "offset": {
+                              "type": "string"
+                            },
+                            "description": {
+                              "type": "string"
+                            }
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Couldn't find an user with the informed id."
+          }
+        }
+      },
+      "delete": {
+        "tags": ["Users"],
+        "summary": "This route is to delete a specific user.",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "userId",
+            "schema": {
+              "type": "string"
+            },
+            "required": true,
+            "description": "ID of the specific user to delete"
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": "You successfully deleted the user."
+          },
+          "404": {
+            "description": "Couldn't find an user with the informed id."
+          }
+        }
+      },
+      "put": {
+        "tags": ["Users"],
+        "summary": "This route is to delete a specific user.",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "cell": {
+                    "type": "string"
+                  },
+                  "email": {
+                    "type": "string"
+                  },
+                  "gender": {
+                    "type": "string"
+                  },
+                  "nat": {
+                    "type": "string"
+                  },
+                  "phone": {
+                    "type": "string"
+                  },
+                  "name": {
+                    "type": "object",
+                    "properties": {
+                      "title": {
+                        "type": "string"
+                      },
+                      "first": {
+                        "type": "string"
+                      },
+                      "last": {
+                        "type": "string"
+                      }
+                    }
+                  },
+                  "dob": {
+                    "type": "object",
+                    "properties": {
+                      "date": {
+                        "type": "string"
+                      },
+                      "age": {
+                        "type": "number"
+                      }
+                    }
+                  },
+                  "picture": {
+                    "type": "object",
+                    "properties": {
+                      "large": {
+                        "type": "string"
+                      },
+                      "medium": {
+                        "type": "string"
+                      },
+                      "thumbnail": {
+                        "type": "string"
+                      }
+                    }
+                  },
+                  "login": {
+                    "type": "object",
+                    "properties": {
+                      "username": {
+                        "type": "string"
+                      },
+                      "password": {
+                        "type": "string"
+                      }
+                    }
+                  },
+                  "location": {
+                    "type": "object",
+                    "properties": {
+                      "street": {
+                        "type": "object",
+                        "properties": {
+                          "number": {
+                            "type": "number"
+                          },
+                          "name": {
+                            "type": "string"
+                          }
+                        }
+                      },
+                      "city": {
+                        "type": "string"
+                      },
+                      "state": {
+                        "type": "string"
+                      },
+                      "postcode": {
+                        "type": "string"
+                      },
+                      "coordinates": {
+                        "type": "object",
+                        "properties": {
+                          "latitude": {
+                            "type": "string"
+                          },
+                          "longitude": {
+                            "type": "string"
+                          }
+                        }
+                      },
+                      "timezone": {
+                        "type": "object",
+                        "properties": {
+                          "offset": {
+                            "type": "string"
+                          },
+                          "description": {
+                            "type": "string"
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "parameters": [
+          {
+            "in": "path",
+            "name": "userId",
+            "schema": {
+              "type": "string"
+            },
+            "required": true,
+            "description": "ID of the specific user to update"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "You successfully updated the user."
+          },
+          "404": {
+            "description": "Couldn't find an user with the informed id."
+          }
+        }
+      }
+    }
+  }
+}

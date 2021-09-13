@@ -2,6 +2,9 @@ import 'dotenv/config';
 import express from 'express';
 import helmet from 'helmet';
 import cors from 'cors';
+import swaggerUi from 'swagger-ui-express';
+
+import swaggerFile from '../http/swagger.json';
 
 import database from '../database';
 import cron from '../cron';
@@ -19,6 +22,7 @@ app.use(
   })
 );
 app.use(cors());
+app.use('/docs', swaggerUi.serve, swaggerUi.setup(swaggerFile));
 app.use(routes);
 cron();
 

@@ -1,4 +1,6 @@
-import { Schema, model } from 'mongoose';
+import { Schema, model, PaginateModel } from 'mongoose';
+
+import mongoosePaginate from 'mongoose-paginate-v2';
 
 import {
   DateOfBirth,
@@ -94,6 +96,8 @@ const UserSchema = new Schema<IUser>({
     required: true,
   },
 });
+
+UserSchema.plugin(mongoosePaginate);
 
 const User = model('User', UserSchema);
 

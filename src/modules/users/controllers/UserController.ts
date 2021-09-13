@@ -47,6 +47,12 @@ export default class UserController {
       }
     );
 
+    if (!userUpdated) {
+      return response
+        .status(404)
+        .json({ message: 'User with given ID not found' });
+    }
+
     return response.status(200).json(userUpdated);
   }
 
@@ -66,6 +72,12 @@ export default class UserController {
 
     const userFound = await User.findOne({ 'login.uuid': userId });
 
+    if (!userFound) {
+      return response
+        .status(404)
+        .json({ message: 'User with given ID not found' });
+    }
+
     return response.status(200).json(userFound);
   }
 
@@ -73,7 +85,9 @@ export default class UserController {
     request: Request,
     response: Response
   ): Promise<Response> {
-    const usersPaginated = await User.find();
+    const { page, limit } = request.query;
+
+    const usersPaginated = await User.paginate({}, { page, limit });
 
     return response.status(200).json(usersPaginated);
   }
